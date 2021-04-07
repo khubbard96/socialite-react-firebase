@@ -9,6 +9,7 @@ import useGroup from "./store/useGroup";
 import GroupSelector from "./components/GroupSelector";
 import ChatRoom from "./components/ChatRoom";
 import useMe from "./store/useMe";
+import GroupsView from "./components/groups/GroupsView";
 
 const App: React.FC = () => {
   const { fs, auth } = getFirestoreAndAuth();
@@ -30,10 +31,7 @@ const App: React.FC = () => {
         <div>
           <div>
             <h3>Welcome, {user.displayName}</h3>
-            <GroupSelector />
-          </div>
-          <div>
-            <ChatRoom />
+            <GroupsView />
           </div>
         </div>
       ) : (
