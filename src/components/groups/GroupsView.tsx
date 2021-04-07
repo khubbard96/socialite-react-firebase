@@ -29,7 +29,6 @@ const GroupsView: React.FC = () => {
 
   _groups?.forEach((group, idx) => {
     const _group = {} as Group;
-    //groups[idx] = group as Group;
     _group.title = group.name;
     _group.avatar = "";
     _group.preview = "no preview available.";
@@ -40,6 +39,7 @@ const GroupsView: React.FC = () => {
     <>
       <FavoriteGroupsList containedGroups={groups} />
       <GroupList containedGroups={groups} />
+      {/* TODO: dm's */}
     </>
   );
 };

@@ -10,6 +10,19 @@ import GroupSelector from "./components/GroupSelector";
 import ChatRoom from "./components/ChatRoom";
 import useMe from "./store/useMe";
 import GroupsView from "./components/groups/GroupsView";
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+  Button,
+  Badge,
+  makeStyles
+} from "@material-ui/core";
+import MenuIcon from "@material-ui/icons/Menu";
+import MailIcon from "@material-ui/icons/Mail";
+import NotificationsIcon from "@material-ui/icons/Notifications";
+import AccountCircle from "@material-ui/icons/AccountCircle";
 
 const App: React.FC = () => {
   const { fs, auth } = getFirestoreAndAuth();
@@ -25,14 +38,48 @@ const App: React.FC = () => {
 
   const currentGroupId = useGroup((state) => state.groupId);
 
+  const useStyles = makeStyles((theme) => ({
+    grow: {
+      flexGrow: 1
+    }
+  }));
+
+  const classes = useStyles();
+
   return (
     <div className="App">
       {user ? (
         <div>
-          <div>
-            <h3>Welcome, {user.displayName}</h3>
-            <GroupsView />
-          </div>
+          <AppBar position="static">
+            <Toolbar>
+              <Typography variant="h6">Socialite</Typography>
+              <div className={classes.grow}></div>
+              <div>
+                <IconButton aria-label="show 4 new mails" color="inherit">
+                  <Badge badgeContent={4} color="secondary">
+                    <MailIcon />
+                  </Badge>
+                </IconButton>
+                <IconButton
+                  aria-label="show 17 new notifications"
+                  color="inherit"
+                >
+                  <Badge badgeContent={17} color="secondary">
+                    <NotificationsIcon />
+                  </Badge>
+                </IconButton>
+                <IconButton
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-haspopup="true"
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
+              </div>
+            </Toolbar>
+          </AppBar>
+          <GroupsView />
         </div>
       ) : (
         <SignIn />

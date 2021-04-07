@@ -1,4 +1,7 @@
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   Avatar,
   Box,
   Card,
@@ -20,7 +23,7 @@ const FavoriteGroupListItem: React.FC<{ group: Group }> = ({
   const useStyles = makeStyles({
     root: {
       width: 150,
-      margin: 5,
+      margin: 10,
       flexShrink: 0
     },
     media: {
@@ -60,15 +63,26 @@ const FavoriteGroupsList: React.FC<GroupList> = ({
 
   return (
     <>
-      <div className={classes.horizBox}>
-        {containedGroups ? (
-          containedGroups.map((group, idx) => {
-            return <FavoriteGroupListItem group={group} key={idx} />;
-          })
-        ) : (
-          <LoadingList />
-        )}
-      </div>
+      <Accordion expanded={true /*we dont care about minimizing this one*/}>
+        <AccordionSummary aria-controls="panel1a-content" id="panel1a-header">
+          <Typography>Favorites</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          {containedGroups ? (
+            <div className={classes.horizBox}>
+              {containedGroups ? (
+                containedGroups.map((group, idx) => {
+                  return <FavoriteGroupListItem group={group} key={idx} />;
+                })
+              ) : (
+                <LoadingList />
+              )}
+            </div>
+          ) : (
+            <LoadingList />
+          )}
+        </AccordionDetails>
+      </Accordion>
     </>
   );
 };
