@@ -25,46 +25,51 @@ import useCurrentModal from "../../../store/useCurrentModal";
 */
 
 const GroupsView: React.FC = () => {
-
-    const useStyles = makeStyles((theme) => ({
-        fab: {
-            position: 'fixed',
-            bottom: theme.spacing(2),
-            right: theme.spacing(2),
-        },
-    }));
-
-    const classes = useStyles();
-
-    const fs = useFirestore((state) => state.fs);
-    const groupsRef = fs.collection("groups");
-    const [_groups] = useCollectionData(groupsRef);
-    const groups: Group[] = [];
-
-    const setModal = useCurrentModal((state)=>state.setCurrentModal);
-
-    const openCreateGroupModal = () => {
-        setModal("CREATE_GROUP");
+  const useStyles = makeStyles((theme) => ({
+    fab: {
+      position: "fixed",
+      bottom: theme.spacing(2),
+      right: theme.spacing(2)
     }
+  }));
 
-    _groups?.forEach((group, idx) => {
-        const _group = {} as Group;
-        _group.title = group.title;
-        _group.avatar = "";
-        _group.preview = group.preview;
-        groups.push(_group);
-    });
+  const classes = useStyles();
 
-    return (
-        <>
-            <FavoriteGroupsList containedGroups={groups} />
-            <GroupList containedGroups={groups} />
-            {/* TODO: dm's */}
-            <Fab className={classes.fab} color="primary" aria-label="add" onClick={openCreateGroupModal}>
-                <AddIcon />
-            </Fab>
-        </>
-    );
+  const fs = useFirestore((state) => state.fs);
+  const groupsRef = fs.collection("groups");
+  const [_groups] = useCollectionData(groupsRef, { idField: "id" });
+  const groups: Group[] = [];
+
+  const setModal = useCurrentModal((state) => state.setCurrentModal);
+
+  const openCreateGroupModal = () => {
+    setModal("CREATE_GROUP");
+  };
+
+  _groups?.forEach((group, idx) => {
+    const _group = {} as Group;
+    _group.id = group.id;
+    _group.title = group.title;
+    _group.avatar = "";
+    _group.preview = group.preview;
+    groups.push(_group);
+  });
+
+  return (
+    <>
+      <FavoriteGroupsList containedGroups={groups} />
+      <GroupList containedGroups={groups} />
+      {/* TODO: dm's */}
+      <Fab
+        className={classes.fab}
+        color="primary"
+        aria-label="add"
+        onClick={openCreateGroupModal}
+      >
+        <AddIcon />
+      </Fab>
+    </>
+  );
 };
 
 export default GroupsView;

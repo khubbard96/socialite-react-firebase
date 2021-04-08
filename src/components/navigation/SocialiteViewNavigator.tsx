@@ -1,22 +1,23 @@
 import { Box, Typography } from "@material-ui/core";
-import { useTheme } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import React from "react";
-import SwipeableViews from 'react-swipeable-views';
+import SwipeableViews from "react-swipeable-views";
 import useApplicationView from "../../store/useApplicationView";
 import ApplicationViewType from "./ApplicationViewType";
 
 interface TabPanelProps {
-    children?: React.ReactNode;
-    dir?: string;
-    index: any;
-    value: any;
+  children?: React.ReactNode;
+  dir?: string;
+  index: any;
+  value: any;
 }
 
 function TabPanel(props: TabPanelProps) {
-    const { children, value, index, ...other } = props;
+  const { children, value, index, ...other } = props;
 
-    return (
-        <>{/*<div
+  return (
+    <>
+      {/*<div
             role="tabpanel"
             hidden={value !== index}
             id={`full-width-tabpanel-${index}`}
@@ -28,39 +29,37 @@ function TabPanel(props: TabPanelProps) {
                     <Typography>{children}</Typography>
                 </Box>
             )}
-            </div>*/}{children}</>
-    );
+            </div>*/}
+      {children}
+    </>
+  );
 }
 
-const SocialiteViewNavigator: React.FC<{ children: any[] }> = ({ children }) => {
-    const theme = useTheme();
-    const [value, setValue] = React.useState(0);
+const SocialiteViewNavigator: React.FC<{ children: any[] }> = ({
+  children
+}) => {
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      height: "100%"
+    }
+  }));
+  const classes = useStyles();
 
-    const { viewId, setAppViewId } = useApplicationView();
+  const { viewId } = useApplicationView();
 
-    const handleChangeIndex = (index: number) => {
-        setAppViewId(index);
-    };
+  return <div className={classes.root}>{children[viewId]}</div>;
+};
 
-    return (
-        <>{/*<SwipeableViews
-            axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-            index={viewId}
-            onChangeIndex={handleChangeIndex}
-            ignoreNativeScroll={false}
-        >
-            {children}
-        </SwipeableViews>*/}{children}</>
-    );
-}
+export const SocialiteApplicationViewComponent: React.FC<{
+  viewType: ApplicationViewType;
+}> = ({ children, viewType }) => {
+  const viewId = useApplicationView((state) => state.viewId);
 
-export const SocialiteApplicationViewComponent: React.FC<{ viewType: ApplicationViewType }> = ({ children, viewType }) => {
-
-    const viewId = useApplicationView((state)=>state.viewId);
-
-    return (
-        <TabPanel value={viewId} index={viewType.valueOf()}>{children}</TabPanel>
-    )
-}
+  return (
+    <TabPanel value={viewId} index={viewType.valueOf()}>
+      {children}
+    </TabPanel>
+  );
+};
 
 export default SocialiteViewNavigator;

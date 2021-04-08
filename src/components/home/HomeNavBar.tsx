@@ -24,7 +24,7 @@ const HomeNavBar: React.FC = () => {
     const classes = useStyles();
 
     return (
-        <AppBar position="static">
+        <AppBar position="fixed">
             <Toolbar>
                 <Typography variant="h6">Socialite</Typography>
                 <div className={classes.grow}></div>

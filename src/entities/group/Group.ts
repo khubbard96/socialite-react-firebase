@@ -1,6 +1,13 @@
-export interface Group {
+import { SocialiteEntity } from "../socialite/SocialiteEntity";
+
+export interface Group extends SocialiteEntity {
+  id: string;
   title: string;
   avatar?: string;
   preview: string;
-  createdAtUtc:number
+  messages: GroupMessage[];
+}
+
+export interface GroupMessage extends SocialiteEntity {
+  text: string;
 }
