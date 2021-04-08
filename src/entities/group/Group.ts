@@ -1,5 +1,6 @@
 export interface Group {
   title: string;
-  avatar: string;
+  avatar?: string;
   preview: string;
+  createdAtUtc:number
 }
