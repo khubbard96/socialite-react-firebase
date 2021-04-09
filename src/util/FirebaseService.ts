@@ -25,14 +25,14 @@ export const getFirestore = (): firebase.firestore.Firestore => {
   if (!fs) {
     initFirebase();
   }
-  return fs || ({} as firebase.firestore.Firestore);
+  return fs;
 };
 
 export const getFirebaseAuth = (): firebase.auth.Auth => {
   if (!auth) {
     initFirebase();
   }
-  return auth || ({} as firebase.auth.Auth);
+  return auth;
 };
 
 const getFirestoreAndAuth = () => {

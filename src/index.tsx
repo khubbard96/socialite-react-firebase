@@ -7,14 +7,17 @@ import AppModalContainer from "./components/modal/AppModalContainer";
 import { CssBaseline } from "@material-ui/core";
 import SocialiteDataInterface from "./components/functional/SocialiteDataInterface";
 import "reflect-metadata";
+import SocialiteUserAuth from "./components/functional/SocialiteUserAuth";
 
 ReactDOM.render(
   <React.StrictMode>
     <CssBaseline />
-    <SocialiteDataInterface />
-    <AppModalContainer>
-      <App />
-    </AppModalContainer>
+    <SocialiteUserAuth>
+      <SocialiteDataInterface />
+      <AppModalContainer>
+        <App />
+      </AppModalContainer>
+    </SocialiteUserAuth>
   </React.StrictMode>,
   document.getElementById("root")
 );

@@ -22,7 +22,8 @@ interface SocialiteDataReference<T, R = DocumentRef | CollectionRef> {
 }
 
 export const GroupsReference: SocialiteDataReference<Group[], CollectionRef> = {
-  docData: () => fs.collection("groups"),
+  docData: () =>
+    fs?.collection ? fs.collection("groups") : ({} as CollectionRef),
   mapToEntity: () => [] as Group[]
 };
 
