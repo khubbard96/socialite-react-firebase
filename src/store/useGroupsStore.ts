@@ -1,3 +1,4 @@
+import { Data } from "react-firebase-hooks/firestore/dist/firestore/types";
 import create from "zustand";
 import { combine } from "zustand/middleware";
 import { Group } from "../entities/group/Group";
@@ -5,10 +6,10 @@ import { Group } from "../entities/group/Group";
 const useGroupsStore = create(
   combine(
     {
-      groups: [] as Group[]
+      groups: [] as Data<Group, "", "">[]
     },
     (set) => ({
-      setGroups: (g: Group[]) => set((s) => ({ groups: g }))
+      setGroups: (g: Data<Group, "", "">[]) => set((s) => ({ groups: g }))
     })
   )
 );

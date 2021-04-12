@@ -11,7 +11,6 @@ import SocialiteUserAuth from "./components/functional/SocialiteUserAuth";
 
 ReactDOM.render(
   <React.StrictMode>
-    <CssBaseline />
     <SocialiteUserAuth>
       <SocialiteDataInterface />
       <AppModalContainer>

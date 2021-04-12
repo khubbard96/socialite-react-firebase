@@ -1,9 +1,12 @@
 import { SocialiteEntity } from "../socialite/SocialiteEntity";
-import ConvertableDataType, {
-  SocialiteFirebaseData
-} from "../converter/ConvertableDataType";
 
-export class Group implements SocialiteEntity, ConvertableDataType<Group> {
+export class GroupMessage implements SocialiteEntity {
+  text: string = "";
+  createdAt = new Date();
+  createdBy = "";
+}
+
+export class Group implements SocialiteEntity {
   id: string = "";
   title: string = "";
   avatar?: string = "";
@@ -11,17 +14,4 @@ export class Group implements SocialiteEntity, ConvertableDataType<Group> {
   messages: GroupMessage[] = [];
   createdAt = new Date();
   createdBy = "";
-  convertToModel = (data: SocialiteFirebaseData) => {
-    this.id = data.id;
-    this.title = data.title;
-    this.avatar = data.avatar;
-    this.preview = data.preview;
-    this.createdAt = data.createdAt;
-    this.createdBy = data.createdBy;
-    return this;
-  };
-}
-
-export interface GroupMessage extends SocialiteEntity {
-  text: string;
 }

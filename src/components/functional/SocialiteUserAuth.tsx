@@ -4,6 +4,7 @@ import useAuth from "../../store/useAuth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import useFirestore from "../../store/useFirestore";
 import useMe from "../../store/useMe";
+import firebase from "firebase/app";
 /**
  * Component to initialize firebase auth
  * and connection before doing anything
@@ -23,7 +24,12 @@ const SocialiteUserAuth: React.FC = ({ children }) => {
   const { me, setMe } = useMe();
   //setMe(user || null);
 
-  if (user && socialiteFs?.collection) {
+  if (
+    user &&
+    socialiteFs &&
+    socialiteFs !== ({} as firebase.firestore.Firestore)
+  ) {
+    console.log("user authed and fs available.");
     return <>{children}</>;
   } else {
     return <>you aren't authenticated...</>;

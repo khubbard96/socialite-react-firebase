@@ -8,6 +8,7 @@ import {
 } from "@material-ui/core";
 import React, { useEffect, useRef } from "react";
 import { Group } from "../../entities/group/Group";
+import useMessages from "../../store/useMessages";
 
 const GroupChatListItem: React.FC<{
   sender: string;
@@ -35,22 +36,15 @@ const GroupChatRoom: React.FC<{ group: Group }> = ({ children, group }) => {
   }));
   const classes = useStyles();
 
-  const latestMessageRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (latestMessageRef.current) {
-      latestMessageRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [group.messages]);
+  const messages = useMessages((state) => state.messages);
 
   return (
     <div className={classes.root}>
       <List>
-        {group.messages.map((message, idx) => {
-          if (idx === group.messages.length - 1) {
+        {messages.map((message, idx) => {
+          if (idx === messages.length - 1) {
             return (
               <>
-                <div ref={latestMessageRef}></div>
                 <GroupChatListItem
                   sender={message.createdBy}
                   text={message.text}
