@@ -5,6 +5,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import useFirestore from "../../store/useFirestore";
 import useMe from "../../store/useMe";
 import firebase from "firebase/app";
+import MainLogin from "../login/MainLogin";
 /**
  * Component to initialize firebase auth
  * and connection before doing anything
@@ -34,10 +35,7 @@ const SocialiteUserAuth: React.FC = ({ children }) => {
         console.log("user authed and fs available.");
         return <>{children}</>;
     } else {
-        return (<>
-            <p>you aren't authenticated...</p>
-            <SignIn />
-        </>);
+        return (<MainLogin />);
     }
 };
 
