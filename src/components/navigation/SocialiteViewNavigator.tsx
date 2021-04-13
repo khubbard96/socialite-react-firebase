@@ -1,7 +1,5 @@
-import { Box, Typography } from "@material-ui/core";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
-import SwipeableViews from "react-swipeable-views";
 import useApplicationView from "../../store/useApplicationView";
 import ApplicationViewType from "./ApplicationViewType";
 

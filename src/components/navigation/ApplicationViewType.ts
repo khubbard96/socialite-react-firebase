@@ -1,6 +1,7 @@
 enum ApplicationViewType {
-    HOME = 0,
-    GROUP
+  SIGNIN = 0,
+  HOME,
+  GROUP
 }
 
 export default ApplicationViewType;
