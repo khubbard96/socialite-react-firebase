@@ -3,11 +3,9 @@ import {
     AccordionDetails,
     AccordionSummary,
     Avatar,
-    Box,
     Card,
     CardActionArea,
     CardContent,
-    ListItemAvatar,
     makeStyles,
     Typography
 } from "@material-ui/core";
@@ -61,12 +59,16 @@ const FavoriteGroupsList: React.FC<GroupList> = ({
             flexDirection: "row",
             flexWrap: "nowrap",
             overflowX: "scroll"
+        },
+        spacer: {
+            height: 50
         }
     });
     const classes = useStyles();
 
     return (
         <>
+            <div className={classes.spacer}></div>
             <Accordion expanded={true /*we dont care about minimizing this one*/}>
                 <AccordionSummary aria-controls="panel1a-content" id="panel1a-header">
                     <Typography>Favorites</Typography>

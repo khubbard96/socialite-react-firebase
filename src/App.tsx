@@ -1,7 +1,5 @@
 import React from "react";
 import "./App.css";
-import SignIn from "./components/SignIn";
-import useMe from "./store/useMe";
 import SocialiteViewNavigator, {
   SocialiteApplicationViewComponent
 } from "./components/navigation/SocialiteViewNavigator";

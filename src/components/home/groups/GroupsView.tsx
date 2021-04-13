@@ -8,6 +8,7 @@ import GroupList from "./GroupList";
 import { Fab, makeStyles } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import useCurrentModal from "../../../store/useCurrentModal";
+import useModalStore from "../../../store/useModalStore";
 
 /*
   things that the GroupsView needs
@@ -38,7 +39,7 @@ const GroupsView: React.FC = () => {
 
   const groups: Group[] = useGroupsStore((state) => state.groups);
 
-  const setModal = useCurrentModal((state) => state.setCurrentModal);
+  const setModal = useModalStore((state) => state.setCurrentModal);
   const openCreateGroupModal = () => {
     setModal("CREATE_GROUP");
   };

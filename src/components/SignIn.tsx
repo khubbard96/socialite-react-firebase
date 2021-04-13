@@ -7,7 +7,7 @@ const SignIn:React.FC = () => {
     const auth = useAuth(state=>state.auth)
 
     const signIn = () => {
-        auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+        auth?.signInWithPopup(new firebase.auth.GoogleAuthProvider());
     }
 
     return(

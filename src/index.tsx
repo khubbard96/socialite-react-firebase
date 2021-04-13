@@ -9,6 +9,8 @@ import SocialiteDataInterface from "./components/functional/SocialiteDataInterfa
 import "reflect-metadata";
 import SocialiteUserAuth from "./components/functional/SocialiteUserAuth";
 
+document.documentElement.style.setProperty('--app-height',`${window.innerHeight}px`)
+
 ReactDOM.render(
   <React.StrictMode>
     <SocialiteUserAuth>

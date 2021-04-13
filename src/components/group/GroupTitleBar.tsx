@@ -11,6 +11,7 @@ import SettingsIcon from "@material-ui/icons/Settings";
 import useApplicationView from "../../store/useApplicationView";
 import ApplicationViewType from "../navigation/ApplicationViewType";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import { openSocialiteModal } from "../modal/SocialiteModal";
 
 const GroupTitleBar: React.FC<{ group: Group }> = ({ children, group }) => {
   const useStyles = makeStyles((theme) => ({
@@ -37,7 +38,7 @@ const GroupTitleBar: React.FC<{ group: Group }> = ({ children, group }) => {
         <Typography variant="h6">{group.title}</Typography>
         <div className={classes.grow}></div>
         <div>
-          <IconButton color="inherit">
+          <IconButton color="inherit" onClick={()=>openSocialiteModal("EDIT_GROUP")}>
             <SettingsIcon />
           </IconButton>
         </div>

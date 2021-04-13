@@ -1,5 +1,5 @@
 export interface SocialiteEntity {
-  createdAt: Date;
+  createdAt?: Date;
   createdBy: SocialiteUserId;
 }
 

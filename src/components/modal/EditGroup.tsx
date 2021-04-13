@@ -6,7 +6,7 @@ import useFirestore from "../../store/useFirestore";
 import { classToPlain } from "class-transformer";
 import useModalStore from "../../store/useModalStore";
 
-const CreateGroup: React.FC = () => {
+const EditGroup: React.FC = () => {
     const useStyles = makeStyles((theme: Theme) =>
         createStyles({
             appBar: {
@@ -38,15 +38,6 @@ const CreateGroup: React.FC = () => {
         setOpenModal(null);
     };
 
-    const handleCreateGroup = () => {
-        const name = groupName;
-        const group = new Group();
-        group.title = name;
-        groupsRef?.add(classToPlain(group));
-        setGroupName("");
-        handleClose();
-    }
-
     return (
         <>
             <AppBar className={classes.appBar}>
@@ -55,18 +46,15 @@ const CreateGroup: React.FC = () => {
                         <CloseIcon />
                     </IconButton>
                     <Typography align="left" variant="h6" className={classes.title}>
-                        Create Group
+                        Edit Group
                     </Typography>
                 </Toolbar>
             </AppBar>
             <Box className={classes.groupForm} justifyContent="center">
-                <TextField onChange={(e)=>setGroupName(e.currentTarget.value)} className={classes.groupFormInput} id="outlined-basic" label="Group name" variant="outlined" />
-                <Button onClick={handleCreateGroup} variant="contained" color="primary">
-                    Continue
-                </Button>            
+        
             </Box>
         </>
     );
 }
 
-export default CreateGroup;
+export default EditGroup;

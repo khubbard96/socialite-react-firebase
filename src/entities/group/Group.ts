@@ -12,6 +12,6 @@ export class Group implements SocialiteEntity {
   avatar?: string = "";
   preview: string = "";
   messages: GroupMessage[] = [];
-  createdAt = new Date();
   createdBy = "";
+  createdAt = new Date();
 }
